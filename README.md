@@ -43,11 +43,23 @@ python setup.py
 If you want to train your own models, refer to the CycleGAN documentation. This project made use of the MS COCO and LLD for training the CycleGAN model.
 
 ## Process
-The usage of this repository is demonstrated in the notebook [Example.ipynb](Example.ipynb). The following sections will cover the process from image to the final logo output.
+The usage of this repository is demonstrated in the notebook [Example.ipynb](Example.ipynb). The following sections will covers the process from image to the final logo output.
 ### 1. Segmentation
+First the user's image is segmented into multiple instances. In that the segmentation takes the three largest instances and the three largest regions (connected instances) and uses them as candidates for logo creation.
+
 <img src="assets/Segmentation.png" width="800"/>
+
 ### 2. Image2Icon
+The segmented image parts are then cut out and fed into the CycleGAN model that translates each instance into multiple logo variants. It does so by taking different CycleGAN save states taken during training. Each logo variant is first generated as a png and then also transformed into a svg version by making use of the PNG_SVG_Conversion code. An examplary transition from instance to logo can be seen below.
+
 <img src="assets/Image2Icon.png" width="800"/>
+
 ### 3. Layout
+The user has then to manually select the logo of their liking. The logo is then fed into a saliency map model that determines areas of attention. These are used to create four different bounding boxes that serve as a basis from which text can be automatically positioned next to a logo.
+
 <img src="assets/Layout.png" width="800"/>
+
 ### 4. Output
+Finally, the output consists of 16 images (no. of bboxes x no. of directions) where the specifed text is placed at each direction for each of the previously determined bounding boxes.
+
+<img src="assets/Output.png" width="800"/>
