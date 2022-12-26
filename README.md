@@ -7,10 +7,10 @@ git clone https://github.com/aldietri/LogoAI
 ```
 This project makes use of the following repositories:
 ```diff
-git clone https://github.com/matterport/Mask_RCNN
+https://github.com/matterport/Mask_RCNN
 ```
 ```diff
-git clone https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix
+https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix
 ```
 
 ### 2. Set up pretrained weights
