@@ -6,12 +6,8 @@ To run the code, use the following command to clone the repository:
 git clone https://github.com/aldietri/LogoAI
 ```
 This project makes use of the following repositories:
-```diff
-https://github.com/matterport/Mask_RCNN
-```
-```diff
-https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix
-```
+* https://github.com/matterport/Mask_RCNN
+* https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix
 
 ### 2. Set up pretrained weights
 This repository requires you to setup multiple files and weights for the pretrained models. Please go ahead and download the following files to use fully make use of our LogoAI:
