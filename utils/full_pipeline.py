@@ -17,7 +17,7 @@ def generate_icons(img_path):
 
 def generate_text_image(img_path, font_path, text):
     # 3. Text Addition
-    save_path_layout = "/".join(img_path.split('/')[:2])
+    save_path_layout = "/".join(img_path.split('/')[:2]) + "/Text Images"
     image_list = create_text_images(img_path=img_path, save_path=save_path_layout, font_path=font_path, text=text)
 
     return image_list
