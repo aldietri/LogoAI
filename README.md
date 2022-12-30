@@ -10,24 +10,7 @@ This project makes use of the following repositories:
 * https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix
 * https://github.com/frgfm/torch-cam
 
-### 2. Set up pretrained weights
-This repository requires you to set up multiple files and weights for the pretrained models. Please go ahead and download the following files to fully make use of LogoAI:
-https://drive.google.com/drive/folders/1SKKku3sm8ou6T20PDRoKbsiMeUCr3k-_?usp=sharing
-
-Data:
-* testA
-
-Weights:
-* Mask_RCNN: mask_rcnn_coco.h5
-* CycleGAN: Objects2Icons
-
-Move the downloaded files in the main directory and run the setup.py file. This will clone the necessary repositories and move the model weights and test data to their proper respective paths.
-
-```diff
-python setup.py
-```
-
-### 3. Install the requirements
+### 2. Install the requirements
 Python 3.7.11
 
 Make sure to install all necessary requirements. For Mac users, make sure to change "pycocotools-windows" to "pycocotools" before installing.
@@ -57,6 +40,23 @@ cargo --version
 cargo install vtracer
 ```
 You will see in terminal log something like **YOUR/PATH/.cargo/bin/vtracer**. You need this directory as input for conversion. Please add it to the vracer_path.txt
+
+### 3. Set up pretrained weights
+This repository requires you to set up multiple files and weights for the pretrained models. Please go ahead and download the following files to fully make use of LogoAI:
+https://drive.google.com/drive/folders/1SKKku3sm8ou6T20PDRoKbsiMeUCr3k-_?usp=sharing
+
+Data:
+* testA
+
+Weights:
+* Mask_RCNN: mask_rcnn_coco.h5
+* CycleGAN: Objects2Icons
+
+Move the downloaded files in the main directory and run the setup.py file. This will clone the necessary repositories and move the model weights and test data to their proper respective paths.
+
+```diff
+python setup.py
+```
 
 ### 4. Model Training
 If you want to train your own model(s), please refer to the CycleGAN documentation. This project made use of the MS COCO and LLD for training the CycleGAN model.
