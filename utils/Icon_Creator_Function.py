@@ -22,11 +22,11 @@ def create_icons(model_dir , img_input_dir, img_output_dir):
     """
     try:
         # Change paths since directory is changed down below
-        img_input_dir = "../" + img_input_dir
-        img_output_dir = "../" + img_output_dir
+        img_input_dir = os.path.join("..", img_input_dir)
+        img_output_dir = os.path.join("..", img_output_dir)
 
         # Folder name
-        folder_name = img_input_dir.split("/")[-1]
+        folder_name = img_input_dir.split("\\")[-1]
 
         # Change directory to CycleGAN location
         os.chdir("pytorch-CycleGAN-and-pix2pix/")
@@ -45,8 +45,8 @@ def create_icons(model_dir , img_input_dir, img_output_dir):
                 epoch = filename.split("_")[0]   
 
                 # Define command for CycleGAN
-                command = f"python test.py --dataroot \"{img_input_dir}\" --name Objects2Icons --model test --results_dir \"{img_output_dir}\{folder_name}\" --epoch {epoch} --no_dropout --gpu_ids {gpu_id}"
-
+                command = f"python test.py --dataroot \"{img_input_dir}\" --name Objects2Icons --model test --results_dir \"{img_output_dir}\\{folder_name}\" --epoch {epoch} --no_dropout --gpu_ids {gpu_id}"
+                
                 # Run command 
                 p = subprocess.run(command, shell=True, capture_output=True)
 
@@ -60,10 +60,10 @@ def create_icons(model_dir , img_input_dir, img_output_dir):
         print("[Image2Icon]: Finished")
 
         # Create SVG2PNG converter
-        converter = Raster2SVG_Converter(vtracer_path="../PNG_SVG_Conversion/vtracer_path.txt")
+        converter = Raster2SVG_Converter(vtracer_path="..\\PNG_SVG_Conversion/vtracer_path.txt")
 
         # Set checkpoint image directory
-        checkpoint_img_dir = f"{img_output_dir}/{folder_name}/Objects2Icons"
+        checkpoint_img_dir = os.path.join(img_output_dir, folder_name, "Objects2Icons")
 
         print("[PNG2SVG]: Running")
 
@@ -78,12 +78,12 @@ def create_icons(model_dir , img_input_dir, img_output_dir):
                 # Run SVG2PNG conversion
                 converter.convert_raster2svg (                              
                 # your full local input file path
-                input_image_path = os.path.abspath(f"{img_output_dir}//{folder_name}/Objects2Icons/{checkpointname}/images/{imagename}_fake.{format}"),
-                # input_image_path = f"D:/Mein Desktop/LogoAI/IconCreator/Output_Images/Objects2Icons/{checkpointname}/images/{imagename}_fake.{format}",
+                # input_image_path = os.path.abspath(f"{img_output_dir}/{folder_name}/Objects2Icons/{checkpointname}/images/{imagename}_fake.{format}"),
+                input_image_path = os.path.abspath(os.path.join(img_output_dir, folder_name, "Objects2Icons", checkpointname, "images", f"{imagename}_fake.{format}")),
 
                 # your full local output folder    
-                # output_folder = f"D:/Mein Desktop/LogoAI/IconCreator/Output_Images/SVGs",
-                output_folder = os.path.abspath(f"{img_output_dir}/{folder_name}/SVGs"),
+                # output_folder = os.path.abspath(f"{img_output_dir}/{folder_name}/SVGs"),
+                output_folder = os.path.abspath(os.path.join(img_output_dir, folder_name, "SVGs")),
                 
                 # filename without .svg extension
                 output_filename = imagename + f"_{checkpointname}"

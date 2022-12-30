@@ -45,7 +45,7 @@ class Raster2SVG_Converter ():
     
     def __init__(self, vtracer_path):
         with open(vtracer_path) as f:
-            self.vtracer_path = f.readlines()
+            self.vtracer_path = f.readline()
         self.command = [self.vtracer_path, '--input',  '--output' ] 
         
 
@@ -115,21 +115,28 @@ class Raster2SVG_Converter ():
 
             if output_filename:
 
-                file_command.insert(4, output_folder + "/" + output_filename + ".svg" )
+                # file_command.insert(4, output_folder + "/" + output_filename + ".svg" )
+                file_command.insert(4, os.path.join(output_folder, f"{output_filename}.svg"))
+                
                 
             else:
                 
-                file_command.insert(4, output_folder + "/" + input_filename + ".svg" )
+                # file_command.insert(4, output_folder + "/" + input_filename + ".svg" )
+                file_command.insert(4, os.path.join(output_folder, f"{input_filename}.svg"))
 
         else:
             
             if output_filename:
                 
-                file_command.insert(4, input_folder + "/" + output_filename + ".svg" )
+                # file_command.insert(4, input_folder + "/" + output_filename + ".svg" )
+                file_command.insert(4, os.path.join(input_folder, f"{output_filename}.svg"))
                 
             else:
                 
-                file_command.insert(4, input_folder + "/" + output_filename + ".svg" )
+                # file_command.insert(4, input_folder + "/" + output_filename + ".svg" )
+                file_command.insert(4, os.path.join(input_folder, f"{output_filename}.svg"))
+
+        file_command = " ".join(file_command)
 
         p = subprocess.run(file_command, shell=True, capture_output = True)
             
@@ -151,7 +158,7 @@ class Raster2SVG_Converter ():
         for filename in os.listdir(input_images_folder):
                     
             self.convert_raster2svg ( 
-                                        input_image_path = input_images_folder + "/" + filename,
+                                        input_image_path = os.path.join(input_images_folder, filename),
                                         output_folder = output_folder,
                                         output_filename = False
                                     )

@@ -26,27 +26,40 @@ Move the downloaded files in the main directory and run the setup.py file. This 
 ```diff
 python setup.py
 ```
+
 ### 3. Install the requirements
-Python 3.7.11 and common packages used in the following libraries:
-#### 3.1 Mask_RCNN
-Follow the installation as outlined in the respective GitHub repository. 
+Python 3.7.11
 
-Other resources that might help you with the installation or fix a likely occurring bug can be found here:
-* https://github.com/buseyaren/installation-guide-of-maskrcnn
-* https://github.com/deepmind/alphafold/issues/478
+Make sure to install all necessary requirements. For Mac users, make sure to change "pycocotools-windows" to "pycocotools" before installing.
 
-#### 3.2 CycleGAN
-Simply follow the instructions provided in the respective GitHub repository. 
-
-#### 3.3 PNG_SVG_Conversion
-Follow the provided README in the subdirectory.
-
-#### 3.4 TorchCAM
 ```diff
-pip install torchcam
+pip install -r requirements
 ```
-#### 3.5  Model Training
-If you want to train your own model(s), refer to the CycleGAN documentation. This project made use of the MS COCO and LLD for training the CycleGAN model.
+
+#### PNG to SVG Conversion
+Separately, you have to make sure to install the PNG to SVG converter. For that, follow the README within the PNG_SVG_Conversion subdirectory.
+
+3.1 Install Rust:
+
+On MacOS, Linux or Unix-like systems run the following command:
+```diff
+curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh
+```
+On Windows, please refer to the following link:
+https://www.rust-lang.org/tools/install
+
+After you installed Rust, check if "cargo" (Rust file management system ) is installed with Rust with following command:
+```diff
+cargo --version
+```
+3.2 Install vtracer:
+```diff
+cargo install vtracer
+```
+You will see in terminal log something like **YOUR/PATH/.cargo/bin/vtracer**. You need this directory as input for conversion. Please add it to the vracer_path.txt
+
+### 4. Model Training
+If you want to train your own model(s), please refer to the CycleGAN documentation. This project made use of the MS COCO and LLD for training the CycleGAN model.
 
 ## Process
 The usage of this repository is demonstrated in the notebook [Example.ipynb](Example.ipynb). The following sections will cover the process from image to the final logo output.

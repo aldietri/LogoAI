@@ -1,1 +1,1 @@
-"C:/Users/Alext/.cargo/bin/vtracer"
+C:/Users/Alext/.cargo/bin/vtracer

@@ -189,12 +189,13 @@ def draw_text_images(img_path, save_path, font_path, text, bbox, stringency):
 
         # Save image to designated path
         imagename, format = img_path.split(".")
-        imagename = imagename.split("/")[-1]
+        imagename = imagename.split("\\")[-1]
 
-        if not os.path.exists(f"{save_path}/{imagename}"):
-                os.makedirs(f"{save_path}/{imagename}")
 
-        img.save(f"{save_path}/{imagename}/{stringency}_{p}.{format}")
+        if not os.path.exists(os.path.join(save_path, imagename)):
+                os.makedirs(os.path.join(save_path, imagename))
+        
+        img.save(os.path.join(save_path, imagename, f"{stringency}_{p}.{format}"))
 
     return images
 

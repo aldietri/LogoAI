@@ -4,6 +4,7 @@ from utils.Layout_Function import create_text_images
 
 import matplotlib.pyplot as plt
 import numpy as np
+import os
 
 def generate_icons(img_path):
     # 1. Segmentation
@@ -11,13 +12,14 @@ def generate_icons(img_path):
     image_segmentation(image_path=img_path, save_path=save_path)
 
     # 2. Icon Generation
-    img_input_dir = f"02_Segmentation_Images/{img_path.split('/')[-1].split('.')[0]}"
+    folder_name = img_path.split('\\')[-1].split('.')[0]
+    img_input_dir = os.path.join("02_Segmentation_Images", folder_name)
     img_output_dir = "03_Output_Images"
-    create_icons(model_dir="checkpoints/Objects2Icons/", img_input_dir=img_input_dir, img_output_dir=img_output_dir)
+    create_icons(model_dir="checkpoints\\Objects2Icons\\", img_input_dir=img_input_dir, img_output_dir=img_output_dir)
 
 def generate_text_image(img_path, font_path, text):
     # 3. Text Addition
-    save_path_layout = "/".join(img_path.split('/')[:2]) + "/Text Images"
+    save_path_layout = os.path.join("\\".join(img_path.split('\\')[:2]), "Text Images")
     image_list = create_text_images(img_path=img_path, save_path=save_path_layout, font_path=font_path, text=text)
 
     return image_list
